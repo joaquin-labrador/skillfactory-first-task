@@ -1,30 +1,29 @@
 {
-  "name": "first-practical-work",
+  "name": "skillfactory-first-task",
   "version": "1.0.0",
-  "description": "first practical work for skill factory by avalith",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev" : "nodemon app.js"
   },
-  "author": "Joaquin Labrador",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquin-labrador/skillfactory-first-task.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaquin-labrador/skillfactory-first-task/issues"
+  },
+  "homepage": "https://github.com/joaquin-labrador/skillfactory-first-task#readme",
   "type": "module",
   "dependencies": {
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
-    "morgan": "^1.10.0",
     "underscore": "^1.13.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joaquin-labrador/skillFactory-first-test.git"
-  },
-  "bugs": {
-    "url": "https://github.com/joaquin-labrador/skillFactory-first-test/issues"
-  },
-  "homepage": "https://github.com/joaquin-labrador/skillFactory-first-test#readme"
+  }
 }
