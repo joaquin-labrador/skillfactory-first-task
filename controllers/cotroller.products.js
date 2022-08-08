@@ -15,31 +15,43 @@ import sortProduct from "../helpers/sortproducts.js";
 
 
 const responseProducts = async (req, res) => {
-  let response = await products.getAllProducts();
-  let { limit, offset } = req.query;
-  if (limit && offset) {
-    response = response.slice(offset, limit);
-  } else if (limit) {
-    response = response.slice(0, limit);
-  } else if (offset) {
-    response = response.slice(offset , response.length);
+  try {
+    let response = await products.getAllProducts();
+    let { limit, offset } = req.query;
+    if (limit && offset) {
+      response = response.slice(offset, limit);
+    } else if (limit) {
+      response = response.slice(0, limit);
+    } else if (offset) {
+      response = response.slice(offset, response.length);
+    }
+    return response.length > 0
+      ? res.status(200).json(response)
+      : res.status(400).json({ message: "Bad request" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
   }
-  return response.length > 0
-    ? res.status(200).json(response)
-    : res.status(400).json({ message: "Bad request" });
 };
 
 const responseProductsById = async (req, res) => {
-  let { id } = req.params;
-  let response = await products.getProductById(id);
-  return res.status(200).json(response);
+  try {
+    let { id } = req.params;
+    let response = await products.getProductById(id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 const responseProductsByPrice = async (req, res) => {
-  let { order } = req.query;
-  let resposeProducts = await products.getAllProducts();
-  let response = sortProduct(resposeProducts, order);
-  return res.status(200).json(response);
+  try {
+    let { order } = req.query;
+    let resposeProducts = await products.getAllProducts();
+    let response = sortProduct(resposeProducts, order);
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
 
 }
 

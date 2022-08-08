@@ -9,7 +9,7 @@ const getAllCarts = async () => {
 
 };
 
-const getSingleCart = async (id) => {
+const getCartById = async (id) => {
   try {
     const response = await fetch(`https://fakestoreapi.com/carts/${id}`);
     return await response.json();
@@ -20,5 +20,5 @@ const getSingleCart = async (id) => {
 
 export default {
   getAllCarts,
-  getSingleCart,
+  getCartById,
 };
