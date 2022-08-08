@@ -9,9 +9,9 @@ const getBigCarts = async (carts) => {
         //aprovecho el callback para filtrar los usuarios que tienen mas de 2 productos 
         if (cart.products.length > MIN_LEGTH) {
             //agregar el usatio por carts.userID
-            let user = users.find((user) =>  cart.userId === user.id);
+            let user = users.find((user) => cart.userId === user.id);
             //agregar el usatio por carts.userID
-            cart.user = user.name;
+            cart.userName = user.username;
             return cart;
         }
     });
