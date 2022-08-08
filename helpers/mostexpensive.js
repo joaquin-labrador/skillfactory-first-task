@@ -1,8 +1,8 @@
 
 const getMostExpensiveByCategory = (categories) => {
     let mostExpensive = categories.map((category)=>{
-        let productExpensive = category.products.reduce((act, post) =>{
-            return act.price > post.price ? act : post;
+        let productExpensive = category.products.reduce((old, act) =>{
+            return old.price > old.price ? old : act;
             //redusco mi array de productos al mas caro de cada categoria
         });
         return {
