@@ -25,9 +25,7 @@ const responseCartsById = async (req, res) => {
 
     try {
         let { id } = req.params;
-        console.log(id);
         let carts = await modelCarts.getCartById(id);
-        console.log(carts);
         return res.status(200).json(carts);
     } catch (error) {
         return res.status(500).json({ message: "Internal server error" });
