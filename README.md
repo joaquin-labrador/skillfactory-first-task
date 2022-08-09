@@ -1,6 +1,6 @@
 # skillfactory-first-task
  
-# Developer: *Joaquin Labrador 👩‍💻*
+# Developer: *Joaquin Labrador 👨‍💻*
 
 
 
