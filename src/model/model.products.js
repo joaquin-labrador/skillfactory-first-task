@@ -42,7 +42,7 @@ const getProductByCategory = async (category) => {
   }
 };
 
-const productsInCategory = async () => {
+const getProductsInCategory = async () => {
   try {
   const categories = await getAllCategories();
   const categoriesAndProducts = await Promise.all(
@@ -65,5 +65,5 @@ export default {
   getProductById,
   getAllCategories,
   getProductByCategory,
-  productsInCategory,
+  getProductsInCategory,
 };
