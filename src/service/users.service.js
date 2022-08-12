@@ -1,3 +1,4 @@
+/*funciones propias de la API getFirsts()*/
 import usersRepository from "../repositories/users.repository";
 
 const getAllUsers = async () => {

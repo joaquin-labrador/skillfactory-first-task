@@ -1,3 +1,7 @@
+/*funciones propias de la API getProductsInCategory()
+ getProductsOrderedByPrice()
+ getMostExpensiveByCategory() */
+
 import productsRepository from "../repositories/products.repository";
 import HttpError from "../helpers/httperror.js";
 import mostExpensive from "../helpers/mostexpensive.js";
@@ -67,4 +71,3 @@ export default {
   getProductsOrderedByPrice,
   getMostExpensiveByCategory,
 };
-
