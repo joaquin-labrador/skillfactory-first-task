@@ -5,9 +5,17 @@
 import productsRepository from "../repositories/products.repository";
 import HttpError from "../helpers/httperror.js";
 import mostExpensive from "../helpers/mostexpensive.js";
-const getAllProducts = async () => {
+const getAllProducts = async (limit,offset) => {
   try {
-    return await productsRepository.getAllProducts();
+    let response = productsRepository.getAllProducts();
+    if (limit && offset) {
+      response = response.slice(offset, limit);
+    } else if (limit) {
+      response = response.slice(0, limit);
+    } else if (offset) {
+      response = response.slice(offset, response.length);
+    }
+    return response;
   } catch (error) {
     return new HttpError("not found", 404);
   }

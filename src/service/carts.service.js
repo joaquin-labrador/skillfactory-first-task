@@ -4,9 +4,17 @@ import cartsRepository from "../repositories/carts.repository";
 import usersRepository from "../repositories/users.repository";
 import HttpError from "../helpers/httperror.js";
 
-const getAllCarts = async () => {
+const getAllCarts = async (limit, offset) => {
   try {
-    return await cartsRepository.getAllCarts();
+    let carts = await cartsRepository.getAllCarts();
+    if (limit && offset) {
+      carts = carts.slice(offset, limit);
+    } else if (limit) {
+      carts = carts.slice(0, limit);
+    } else if (offset) {
+      carts = carts.slice(offset, carts.length);
+    }
+    return carts;
   } catch (error) {
     return new HttpError("not found", 404);
   }

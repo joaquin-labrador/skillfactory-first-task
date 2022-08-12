@@ -1,9 +1,17 @@
 /*funciones propias de la API getFirsts()*/
 import usersRepository from "../repositories/users.repository";
 
-const getAllUsers = async () => {
+const getAllUsers = async (limit,offset) => {
   try {
-    return await usersRepository.getAllUsers();
+    let response = await usersRepository.getUsers();
+    if (limit && offset) {
+      response = response.slice(offset, limit);
+    } else if (limit) {
+      response = response.slice(0, limit);
+    } else if (offset) {
+      response = response.slice(offset, response.length);
+    }
+    return response;
   } catch (error) {
     return new HttpError("not found", 404);
   }
