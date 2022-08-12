@@ -42,10 +42,28 @@ const getProductByCategory = async (category) => {
   }
 };
 
+const productsInCategory = async () => {
+  try {
+  const categories = await getAllCategories();
+  const categoriesAndProducts = await Promise.all(
+    categories.map(async (category) => {
+      return {
+        category,
+        products: await getProductByCategory(category),
+      };
+    })
+  );
+  return categoriesAndProducts;
+  } catch (error) {
+    return new HttpError("not found", 404);
+  }
+};
+
 //Export all the functions
 export default {
   getAllProducts,
   getProductById,
   getAllCategories,
   getProductByCategory,
+  productsInCategory,
 };
