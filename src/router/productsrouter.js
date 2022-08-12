@@ -11,11 +11,23 @@ import validatorQueryOrder from "../middleware/orderquery.js";
 
 //levantamos las rutas del localhost : 3000 con el router
 router.use(loggerDate);
-router.get("/products", requestQuery, controllerProducts.responseProducts);
-router.get("/products/categories", controllerCategories.responseCategories);
-router.get("/products/categories/expensive", controllerCategories.resposeMostExpensiveProducs);
-router.get("/products/prices", validatorQueryOrder ,controllerProducts.responseProductsByPrice);
-router.get("/products/category/:category", requestCategory, controllerCategories.responseProductsByCategory);
-router.get("/products/:id", requestId, controllerProducts.responseProductsById);
+router
+  .get("/products", requestQuery, controllerProducts.responseProducts)
+  .get("/products/categories", controllerCategories.responseCategories)
+  .get(
+    "/products/categories/expensive",
+    controllerCategories.resposeMostExpensiveProducs
+  )
+  .get(
+    "/products/prices",
+    validatorQueryOrder,
+    controllerProducts.responseProductsByPrice
+  )
+  .get(
+    "/products/category/:category",
+    requestCategory,
+    controllerCategories.responseProductsByCategory
+  )
+  .get("/products/:id", requestId, controllerProducts.responseProductsById);
 
 export default router;

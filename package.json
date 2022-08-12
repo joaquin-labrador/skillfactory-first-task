@@ -5,25 +5,29 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon app.js"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joaquin-labrador/skillfactory-first-task.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/joaquin-labrador/skillfactory-first-task/issues"
   },
   "homepage": "https://github.com/joaquin-labrador/skillfactory-first-task#readme",
-  "type": "module",
-  "dependencies": {
-    "express": "^4.18.1",
-    "express-validator": "^6.14.2",
-    "underscore": "^1.13.4"
-  },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "type": "module",
+  "engines": {
+      "npm": ">=8.0.0",
+      "node": ">=18.0.0"
   }
 }

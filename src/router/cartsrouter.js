@@ -7,10 +7,9 @@ import controllerCarts from "../controllers/controller.carts.js";
 const router = Router();
 
 router.use(loggerDate);
-router.get("/carts", requestQuery, controllerCarts.responseCarts);
-router.get("/carts/bigcarts", controllerCarts.resposeBigsCarts);
-router.get("/carts/:id", requestId, controllerCarts.responseCartsById);
-
-
+router
+  .get("/carts", requestQuery, controllerCarts.responseCarts)
+  .get("/carts/bigcarts", controllerCarts.resposeBigsCarts)
+  .get("/carts/:id", requestId, controllerCarts.responseCartsById);
 
 export default router;

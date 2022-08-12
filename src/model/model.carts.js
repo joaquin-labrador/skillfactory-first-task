@@ -6,7 +6,6 @@ const getAllCarts = async () => {
   } catch (error) {
     return new HttpError("not found", 404);
   }
-
 };
 
 const getCartById = async (id) => {

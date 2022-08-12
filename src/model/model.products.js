@@ -17,7 +17,6 @@ const getProductById = async (id) => {
     return await response.json();
   } catch (error) {
     return new HttpError("We have 20 products", 404);
-
   }
 };
 

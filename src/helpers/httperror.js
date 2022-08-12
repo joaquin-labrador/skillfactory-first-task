@@ -1,4 +1,3 @@
-
 class HttpError extends Error {
   constructor(message, status) {
     super(message);
@@ -6,4 +5,3 @@ class HttpError extends Error {
   }
 }
 export default HttpError;
-

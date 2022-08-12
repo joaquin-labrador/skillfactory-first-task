@@ -12,12 +12,10 @@ import sortProduct from "../helpers/sortproducts.js";
     se develven la integridad de los productos
 */
 
-
-
 const responseProducts = async (req, res) => {
   try {
     let response = await products.getAllProducts();
-    let { limit, offset } = req.query;
+    const { limit, offset } = req.query;
     if (limit && offset) {
       response = response.slice(offset, limit);
     } else if (limit) {
@@ -35,8 +33,8 @@ const responseProducts = async (req, res) => {
 
 const responseProductsById = async (req, res) => {
   try {
-    let { id } = req.params;
-    let response = await products.getProductById(id);
+    const { id } = req.params;
+    const response = await products.getProductById(id);
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
@@ -45,15 +43,14 @@ const responseProductsById = async (req, res) => {
 
 const responseProductsByPrice = async (req, res) => {
   try {
-    let { order } = req.query;
-    let resposeProducts = await products.getAllProducts();
-    let response = sortProduct(resposeProducts, order);
+    const { order } = req.query;
+    const resposeProducts = await products.getAllProducts();
+    const response = sortProduct(resposeProducts, order);
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
-
-}
+};
 
 export default {
   responseProducts,

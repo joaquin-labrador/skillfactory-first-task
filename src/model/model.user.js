@@ -1,11 +1,10 @@
 import HttpError from "../helpers/httperror.js";
 const getAllUsers = async () => {
-  try{
-  const response = await fetch("https://fakestoreapi.com/users");
-  return await response.json();
-  }catch(error){
+  try {
+    const response = await fetch("https://fakestoreapi.com/users");
+    return await response.json();
+  } catch (error) {
     return new HttpError("not found", 404);
- 
   }
 };
 
@@ -16,18 +15,18 @@ const getUserById = async (id) => {
   } catch (error) {
     return new HttpError("not found", 404);
   }
-
 };
 
-const getLimitUser = async (limit) =>{
+const getLimitUser = async (limit) => {
   try {
-    const response = await fetch(`https://fakestoreapi.com/users?limit=${limit}`);
+    const response = await fetch(
+      `https://fakestoreapi.com/users?limit=${limit}`
+    );
     return await response.json();
-  }catch{
+  } catch {
     return new HttpError("not found", 404);
   }
-}
-
+};
 
 export default {
   getAllUsers,
