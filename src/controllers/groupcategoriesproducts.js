@@ -1,5 +1,5 @@
 //Esta funcion la decidi poner en el controller ya que usa el modelo de categorias y productos
-import categories from "../model/model.categories.js";
+import categories from "../model/model.products.js";
 const grouper = async (responseCategory) => {
   const categoriesAndProducts = await Promise.all(
     responseCategory.map(async (category) => {

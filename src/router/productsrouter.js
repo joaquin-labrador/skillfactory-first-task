@@ -1,7 +1,6 @@
 import { Router } from "express";
 const router = Router();
 import controllerProducts from "../controllers/cotroller.products.js";
-import controllerCategories from "../controllers/cotroller.categories.js";
 
 import loggerDate from "../middleware/requestdate.js";
 import requestQuery from "../middleware/limitoffset.js";
@@ -13,10 +12,10 @@ import validatorQueryOrder from "../middleware/orderquery.js";
 router.use(loggerDate);
 router
   .get("/products", requestQuery, controllerProducts.responseProducts)
-  .get("/products/categories", controllerCategories.responseCategories)
+  .get("/products/categories", controllerProducts.responseCategories)
   .get(
     "/products/categories/expensive",
-    controllerCategories.resposeMostExpensiveProducs
+    controllerProducts.resposeMostExpensiveProducs
   )
   .get(
     "/products/prices",
@@ -26,7 +25,7 @@ router
   .get(
     "/products/category/:category",
     requestCategory,
-    controllerCategories.responseProductsByCategory
+    controllerProducts.responseProductsByCategory
   )
   .get("/products/:id", requestId, controllerProducts.responseProductsById);
 
