@@ -5,7 +5,7 @@
 import Products from "../model/model.products.js";
 import _ from "lodash";
 import sortProduct from "../helpers/sortproducts.js";
-import grouper from "./groupcategoriesproducts.js";
+
 
 /*Aplico limit and offset, para poder filtrar todos los productos por id, las rutas son:
     localhost:3000/api/products?limit=10&offset=0 , ejemplo
@@ -57,9 +57,8 @@ const responseProductsByPrice = async (req, res) => {
 
 const responseCategories = async (req, res) => {
   try {
-    const responseCategory = await Products.getAllCategories();
-    const products = await grouper(responseCategory);
-    return res.status(200).json(products);
+    const responseCategory = await Products.productsInCategory();
+    return res.status(200).json(responseCategory);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
@@ -79,10 +78,9 @@ const responseProductsByCategory = async (req, res) => {
 
 const resposeMostExpensiveProducs = async (req, res) => {
   try {
-    const response = await Products.getAllCategories();
-    const categoriesAndProducts = await grouper(response);
+    const response = await Products.productsInCategory();
     const mostExpensive = await getMostExpensiveByCategory(
-      categoriesAndProducts
+      response
     );
     return res.status(200).json(mostExpensive);
   } catch (error) {
