@@ -3,14 +3,10 @@
  */
 
 import productsService from "../service/products.service.js";
-import _ from "lodash";
+
 import sortProduct from "../helpers/sortproducts.js";
 
-/*Aplico limit and offset, para poder filtrar todos los productos por id, las rutas son:
-    localhost:3000/api/products?limit=10&offset=0 , ejemplo
-    si la ruta es localhost:3000/api/products:
-    se develven la integridad de los productos
-*/
+
 
 const responseProducts = async (req, res) => {
   try {
