@@ -2,12 +2,12 @@
  getProductsOrderedByPrice()
  getMostExpensiveByCategory() */
 
-import productsRepository from "../repositories/products.repository";
+import productsRepository from "../repositories/products.repository.js";
 import HttpError from "../helpers/httperror.js";
 import mostExpensive from "../helpers/mostexpensive.js";
 const getAllProducts = async (limit,offset) => {
   try {
-    let response = productsRepository.getAllProducts();
+    let response = await productsRepository.getAllProducts();
     if (limit && offset) {
       response = response.slice(offset, limit);
     } else if (limit) {
@@ -60,7 +60,8 @@ const getProductsOrderedByPrice = async (order) => {
     return new HttpError("not found", 404);
   }
 };
-const getMostExpensiveByCategory = async () => {
+
+const getMostExpensiveProducts = async () => {
   try {
     let products = await productsRepository.getProductsInCategory();
     products = mostExpensive(products);
@@ -73,9 +74,10 @@ const getMostExpensiveByCategory = async () => {
 export default {
   getAllProducts,
   getProductById,
+  getMostExpensiveProducts,
   getCategories,
   getProductByCategory,
   getProductsInCategory,
   getProductsOrderedByPrice,
-  getMostExpensiveByCategory,
+  
 };

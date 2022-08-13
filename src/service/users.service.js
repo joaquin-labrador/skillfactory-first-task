@@ -1,11 +1,11 @@
 /*funciones propias de la API getFirsts()*/
-import usersRepository from "../repositories/users.repository";
-
-const getAllUsers = async (limit,offset) => {
+import usersRepository from "../repositories/users.repository.js";
+import HttpError from "../helpers/httperror.js";
+const getAllUsers = async (limit, offset) => {
   try {
     let response = await usersRepository.getUsers();
     if (limit && offset) {
-      response = response.slice(offset, limit);
+      response = response.slice(limit,offset );
     } else if (limit) {
       response = response.slice(0, limit);
     } else if (offset) {

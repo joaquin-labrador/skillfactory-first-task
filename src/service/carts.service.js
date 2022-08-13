@@ -1,7 +1,7 @@
 //funciones propias de la API bigsCart()
 
-import cartsRepository from "../repositories/carts.repository";
-import usersRepository from "../repositories/users.repository";
+import cartsRepository from "../repositories/carts.repository.js";
+import usersRepository from "../repositories/users.repository.js";
 import HttpError from "../helpers/httperror.js";
 
 const getAllCarts = async (limit, offset) => {
@@ -13,7 +13,7 @@ const getAllCarts = async (limit, offset) => {
       carts = carts.slice(0, limit);
     } else if (offset) {
       carts = carts.slice(offset, carts.length);
-    }
+    };
     return carts;
   } catch (error) {
     return new HttpError("not found", 404);
