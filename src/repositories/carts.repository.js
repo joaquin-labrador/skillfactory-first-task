@@ -1,4 +1,4 @@
-import modelCarts from "../model/model.carts";
+import modelCarts from "../model/model.carts.js";
 
 const getAllCarts = async () => {
   return await modelCarts.getAllCarts();

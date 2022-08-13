@@ -1,13 +1,13 @@
-import productModel from "../models/product.model";
+import usersModel from "../model/model.user.js";
 
 const getUsers = async () => {
-  return await productModel.getUsers();
+  return await usersModel.getAllUsers();
 };
 const getUserById = async (id) => {
-  return await productModel.getUserById(id);
+  return await usersModel.getUserById(id);
 };
 const getLimitUser = async (limit) => {
-  return await productModel.getLimitUser(limit);
+  return await usersModel.getLimitUser(limit);
 };
 
 export default {
