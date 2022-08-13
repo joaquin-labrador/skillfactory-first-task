@@ -14,15 +14,8 @@ import sortProduct from "../helpers/sortproducts.js";
 
 const responseProducts = async (req, res) => {
   try {
-    let response = await productsService.getAllProducts();
     const { limit, offset } = req.query;
-    if (limit && offset) {
-      response = response.slice(offset, limit);
-    } else if (limit) {
-      response = response.slice(0, limit);
-    } else if (offset) {
-      response = response.slice(offset, response.length);
-    }
+    let response = await productsService.getAllProducts(limit, offset);
     return response.length > 0
       ? res.status(200).json(response)
       : res.status(400).json({ message: "Bad request" });
