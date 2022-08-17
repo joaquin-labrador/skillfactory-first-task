@@ -34,6 +34,7 @@ const resposeUserById = async (req, res) => {
   }
 };
 
+
 export default {
   resposeAllUsers,
   resposeUserFirsts,
