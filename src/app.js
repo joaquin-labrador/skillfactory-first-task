@@ -12,7 +12,6 @@ app.use(express.json());
 
 app.use("/api/v1.0", routerProducts, routerUsers, routerCarts);
 
-//error handler 404
 app.use(errorHandler);
 
 app.listen(port, () => {
