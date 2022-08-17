@@ -1,32 +1,36 @@
 import serviceUsers from "../service/users.service.js";
+import HttpRespose from "../helpers/http/HttpResponse.js";
 const USER_FIRSTS = 3; //numero de usuarios que se mostraran en la peticion /users/firsts
 //aplico limit and offset
 const resposeAllUsers = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { limit, offset } = req.query;
-    const response = await serviceUsers.getAllUsers(limit, offset);
-    return res.status(200).json(response);
+    const user = await serviceUsers.getAllUsers(limit, offset);
+    return response.success(user);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return response.serviceUnavailable(error);
   }
 };
 
 const resposeUserFirsts = async (req, res) => {
+  const response = HttpRespose(res);
   try {
-    const response = await serviceUsers.getFirsts(USER_FIRSTS);
-    return res.status(200).json(response);
+    const user = await serviceUsers.getFirsts(USER_FIRSTS);
+    return response.success(user);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const resposeUserById = async (req, res) => {
+  const response = HttpRespose(res);
   try {
-    let { id } = req.params;
-    let response = await serviceUsers.getUserById(id);
-    return res.status(200).json(response);
+    const { id } = req.params;
+    const user = await serviceUsers.getUserById(id);
+    return response.success(user);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 

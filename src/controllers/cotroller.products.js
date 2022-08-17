@@ -5,69 +5,75 @@
 import productsService from "../service/products.service.js";
 
 import sortProduct from "../helpers/sortproducts.js";
-
+import HttpRespose from "../helpers/http/HttpResponse.js";
 
 
 const responseProducts = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { limit, offset } = req.query;
-    let response = await productsService.getAllProducts(limit, offset);
-    return response.length > 0
-      ? res.status(200).json(response)
-      : res.status(400).json({ message: "Bad request" });
+    const products = await productsService.getAllProducts(limit, offset);
+    return products.length > 0
+      ? response.success(products)
+      : response.notFound("No products found");
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const responseProductsById = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { id } = req.params;
-    const response = await productsService.getProductById(id);
-    return res.status(200).json(response);
+    const products = await productsService.getProductById(id);
+    return response.success(products);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const responseProductsByPrice = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { order } = req.query;
     const resposeProducts = await productsService.getAllProducts();
-    const response = sortProduct(resposeProducts, order);
-    return res.status(200).json(response);
+    const products = sortProduct(resposeProducts, order);
+    return response.success(products);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const responseCategories = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const responseCategory = await productsService.getProductsInCategory();
-    return res.status(200).json(responseCategory);
+    return response.success(responseCategory);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const responseProductsByCategory = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { category } = req.params;
-    const response = await productsService.getProductByCategory(category);
-    return response.length > 0
-      ? res.status(200).json(response)
-      : res.status(404).json({ message: "not found" });
+    const products = await productsService.getProductByCategory(category);
+    return products.length > 0
+      ? response.success(products)
+      : response.notFound("No products found");
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const resposeMostExpensiveProducs = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const mostExpensive = await productsService.getMostExpensiveProducts();
-    return res.status(200).json(mostExpensive);
+    return response.success(mostExpensive);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 

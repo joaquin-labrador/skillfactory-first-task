@@ -1,34 +1,38 @@
 import serviceCarts from "../service/carts.service.js";
 import getBigCarts from "../helpers/bigcarts.js";
+import HttpRespose from "../helpers/http/HttpResponse.js"
 const responseCarts = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     let { limit, offset } = req.query;
     const carts = await serviceCarts.getAllCarts(limit, offset);
     return carts.length > 0
-      ? res.status(200).json(carts)
-      : res.status(400).json({ message: "Bad request" });
+      ? response.success(carts)
+      : response.notFound("No carts found");
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const responseCartsById = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const { id } = req.params;
     const carts = await serviceCarts.getCartById(id);
-    return res.status(200).json(carts);
+    return response.success(carts);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
 const resposeBigsCarts = async (req, res) => {
+  const response = HttpRespose(res);
   try {
     const carts = await serviceCarts.getAllCarts();
     const bigCarts = await getBigCarts(carts);
-    return res.status(200).json(bigCarts);
+    return response.success(bigCarts);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return response.serviceUnavailable(error);
   }
 };
 
